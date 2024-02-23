@@ -1,32 +1,18 @@
-import Input from './comps/Input';
-import Translated from './comps/Translated';
-import axios from 'axios';
-import React, { useState } from 'react';
-function App() {
-  const [translatedText, setTranslatedText] = useState('');
-  const [fromLanguage, setFromLanguage] = useState("en");
-  const [toLanguage, setToLanguage] = useState("es");
-  const translateText = (text) => {
-    axios.get(`https://api.mymemory.translated.net/get?q=${text}&langpair=${fromLanguage}|${toLanguage}`)
-      .then(response => { 
-        setTranslatedText(response.data.matches[0].translation);
-      })
-      .catch(error => {
-        console.error('Error fetching translation:', error);
-      });
-  };
-  const handleSwitchLanguages = () => {
-    const temp = fromLanguage;
-    setFromLanguage(toLanguage);
-    setToLanguage(temp);
-};
-  
+import React from 'react'
+import Main from "./Main";
+import Home from "./Home";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+const App = () => {
   return (
-    <main>
-      <Input  onTranslate={translateText} fromLanguage={fromLanguage} setFromLanguage={setFromLanguage} handleSwitchLanguages={handleSwitchLanguages} />
-      <Translated translatedText={translatedText} toLanguage={toLanguage} setToLanguage={setToLanguage} />
-    </main>
-  );
+<main>
+<BrowserRouter>
+        <Routes>
+          <Route path="/translatorapp/" element={<Home />} />
+          <Route path="/translatorapp/main" element={<Main />} />
+        </Routes>
+    </BrowserRouter>
+</main>
+  )
 }
 
-export default App;
+export default App

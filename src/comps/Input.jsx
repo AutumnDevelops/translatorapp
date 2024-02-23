@@ -2,6 +2,8 @@ import React, {useState, useRef} from 'react';
 import { FaClipboard } from "react-icons/fa6";
 import { FaHeadphones } from "react-icons/fa";
 import { FaRepeat } from "react-icons/fa6";
+import { FaHome } from "react-icons/fa";
+import {Link} from "react-router-dom";
 import languages_data from "../json/languages_data";
 const Input = ({onTranslate, fromLanguage, setFromLanguage, handleSwitchLanguages}) => {
   const [text, setText] = useState('');
@@ -37,6 +39,11 @@ const Input = ({onTranslate, fromLanguage, setFromLanguage, handleSwitchLanguage
         <section id = "input_area" className = "region">
             <div id = "input_overhead" className = "overhead">
                 <div className = "icons">
+                <Link to = "/translatorapp/">
+                     <div class = "overhead_icons">
+                            <i class="house"><FaHome /></i>
+                    </div>
+                </Link>
                     <div id  = "input_sound" className = "overhead_icons" onClick = {handleInputSoundClick}>
                         <i className="sound" id = "headphones_icon"><FaHeadphones /></i>
                     </div>
